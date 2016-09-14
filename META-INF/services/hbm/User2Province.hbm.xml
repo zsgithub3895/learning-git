@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.sihuatech.sqm.security.User2Province" table="SECURITY_USER_TO_PROVINCE">
+		<id name="id" type="long" column="ID">
+			<generator class="native" />
+		</id>
+		<property name="userId" type="long" column="USER_ID" />
+		<property name="provinceId" type="long" column="PROVINCE_ID" />
+		<property name="creator" type="long" column="CREATOR" />
+		<property name="createTime" type="java.util.Date" column="CREATE_TIME" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="enumerationManager"
+		class="com.sihuatech.sqm.enums.manager.EnumerationManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="enumItemManager"
+		class="com.sihuatech.sqm.enums.manager.EnumItemManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="enumerationService" class="com.sihuatech.sqm.enums.service.EnumerationService">
+		<property name="enumerationManager">
+			<ref local="enumerationManager"/>
+		</property>
+		<property name="enumItemManager">
+			<ref local="enumItemManager"/>
+		</property>
+		<property name="enumerationHolder">
+			<ref local="enumerationHolder" />
+		</property>
+	</bean>
+ 	<bean id="enumItemService" class="com.sihuatech.sqm.enums.service.EnumItemService">
+		<property name="enumerationManager">
+			<ref local="enumerationManager"/>
+		</property>
+		<property name="enumItemManager">
+			<ref local="enumItemManager"/>
+		</property>
+		<property name="enumerationHolder">
+			<ref local="enumerationHolder" />
+		</property>
+		<property name="enumItemSyncManager">
+			<ref local="enumItemSyncManager" />
+		</property>
+		<property name="user2ProvinceManager" ref="user2ProvinceManager" />
+	</bean>
+ 	<!-- enums缓存处理 -->
+	<bean id="enumerationHolder" class="com.sihuatech.sqm.enums.holder.EnumerationHolder" >
+		<property name="enumerationManager">
+			<ref local="enumerationManager"/>
+		</property>
+		<property name="enumItemManager">
+			<ref local="enumItemManager"/>
+		</property>
+	</bean>
+	
+	<bean id="enumItemSyncManager"
+		class="com.sihuatech.sqm.enums.manager.EnumItemSyncManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="enumItemSyncTaskTrigger" class="com.sihuatech.sqm.enums.service.EnumItemSyncTask">
+		<property name="enumItemService">
+            <ref bean="enumItemService"/>
+        </property>
+        <property name="enumItemManager">
+            <ref bean="enumItemManager"/>
+        </property>
+        <property name="enumerationManager">
+            <ref bean="enumerationManager"/>
+        </property>
+        <property name="enumItemSyncManager">
+            <ref bean="enumItemSyncManager"/>
+        </property>
+	</bean>
+	
+	
+	<!--  
+	<bean id="enumItemSyncJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="enumItemSyncTaskTrigger" />
+        </property>
+        <property name="targetMethod">
+            <value>doTask</value>
+        </property>
+    </bean>
+    <bean id="enumItemSyncCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="enumItemSyncJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */28 * * * ?</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref local="enumItemSyncCronTrigger" />
+            </list>
+        </property>
+    </bean>
+    -->
+</beans>

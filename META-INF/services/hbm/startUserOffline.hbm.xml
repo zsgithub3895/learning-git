@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.sihuatech.sqm.content.entity.StartUserOffline"
+		table="T_STARTUSER_OFFLINE">
+		<id name="id" type="java.lang.Long" column="ID">
+			<generator class="native"></generator>
+		</id>
+		<property name="deviceProvider" type="java.lang.String" column="deviceProvider" />
+		<property name="platform" type="java.lang.String" column="platform" />
+		<property name="provinceID" type="java.lang.String" column="provinceID" />
+		<property name="fwVersion" type="java.lang.String" column="fwVersion" />
+		<property name="startUserCount" type="java.lang.Double" column="startUserCount" />
+		<property name="parseTime" type="java.lang.String" column="parseTime" />
+	</class>
+</hibernate-mapping>

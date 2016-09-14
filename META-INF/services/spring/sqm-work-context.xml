@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="sqmUserService" class="com.sihuatech.sqm.security.SQMUserService" >
+		<property name="userManager" ref="userManager" />
+		<property name="user2RoleManager" ref="user2RoleManager" />
+		<property name="user2ProvinceManager" ref="user2ProvinceManager" />
+	</bean>
+	
+	<bean id="user2ProvinceManager" class="com.sihuatech.sqm.security.User2ProvinceManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="playSuccService" class="com.sihuatech.sqm.content.service.PlaySuccService" >
+		<property name="playSuccManager">
+			<ref local="playSuccManager"/>
+		</property>
+	</bean>
+	<bean id="playSuccManager" class="com.sihuatech.sqm.content.manager.PlaySuccManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="firstFrameService" class="com.sihuatech.sqm.content.service.FirstFrameService" >
+		<property name="firstFrameManager">
+			<ref local="firstFrameManager"/>
+		</property>
+	</bean>
+	<bean id="firstFrameManager" class="com.sihuatech.sqm.content.manager.FirstFrameManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="httpFlowService" class="com.sihuatech.sqm.content.service.HttpFlowService" >
+		<property name="httpFlowManager">
+			<ref local="httpFlowManager"/>
+		</property>
+	</bean>
+	<bean id="httpFlowManager" class="com.sihuatech.sqm.content.manager.HttpFlowManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="delayIndexService" class="com.sihuatech.sqm.content.service.DelayIndexService" >
+		<property name="playCountManager">
+			<ref local="playCountManager"/>
+		</property>
+		<property name="playUserManager">
+			<ref local="playUserManager"/>
+		</property>
+		
+		<property name="playCountOfflineManager">
+			<ref local="playCountOfflineManager"/>
+		</property>
+		<property name="playUserOfflineManager">
+			<ref local="playUserOfflineManager"/>
+		</property>
+		<property name="faultUserManager">
+			<ref local="faultUserManager"/>
+		</property>
+	</bean>
+	
+	<bean id="playCountManager" class="com.sihuatech.sqm.content.manager.PlayCountManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="playUserManager" class="com.sihuatech.sqm.content.manager.PlayUserManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="playCountOfflineManager" class="com.sihuatech.sqm.content.manager.PlayCountOfflineManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="playUserOfflineManager" class="com.sihuatech.sqm.content.manager.PlayUserOfflineManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="playExportService" class="com.sihuatech.sqm.content.service.PlayExportService" >
+		<property name="playUserExportManager">
+			<ref local="playUserExportManager"/>
+		</property>
+		<property name="playCountExportManager">
+			<ref local="playCountExportManager"/>
+		</property>
+	</bean>
+	
+	<bean id="playCountExportManager" class="com.sihuatech.sqm.content.manager.PlayCountExportManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="playUserExportManager" class="com.sihuatech.sqm.content.manager.PlayUserExportManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="imageIndexService" class="com.sihuatech.sqm.content.service.ImageIndexService">
+		<property name="imageIndexManager">
+			<ref local="imageIndexManager" />
+		</property>
+	</bean>
+
+	<bean id="imageIndexManager" class="com.sihuatech.sqm.content.manager.ImageIndexManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="epgIndexService" class="com.sihuatech.sqm.content.service.EPGIndexService">
+		<property name="epgIndexManager">
+			<ref local="epgIndexManager" />
+		</property>
+	</bean>
+
+	<bean id="epgIndexManager" class="com.sihuatech.sqm.content.manager.EPGIndexManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="genConfigService" class="com.sihuatech.sqm.content.service.GenConfigService" >
+		<property name="elasticsearchUrl">
+			<value>${sqm.elasticsearchUrl}</value>
+		</property>
+	</bean>
+
+	<bean id="businessOfflineService" class="com.sihuatech.sqm.content.service.BusinessOfflineService">
+		<property name="businessOfflineManager">
+			<ref local="businessOfflineManager" />
+		</property>
+		<property name="businessOnlineManager">
+			<ref local="businessOnlineManager" />
+		</property>
+	</bean>
+
+	<bean id="businessOfflineManager" class="com.sihuatech.sqm.content.manager.BusinessOfflineManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+		<bean id="businessOnlineManager" class="com.sihuatech.sqm.content.manager.BusinessOnlineManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="faultUserManager" class="com.sihuatech.sqm.content.manager.FaultUserManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="startUserManager" class="com.sihuatech.sqm.content.manager.StartUserManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="startUserOfflineManager" class="com.sihuatech.sqm.content.manager.StartUserOfflineManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="startUserService" class="com.sihuatech.sqm.content.service.StartUserService">
+		<property name="startUserManager">
+			<ref local="startUserManager" />
+		</property>
+		<property name="startUserOfflineManager">
+			<ref local="startUserOfflineManager" />
+		</property>
+	</bean>
+	
+	 <bean id="streamUserService" class="com.sihuatech.sqm.content.service.StreamUserService" >
+		<property name="streamUserManager">
+			<ref local="streamUserManager"/>
+		</property>
+		<property name="streamUserOfflineManager">
+			<ref local="streamUserOfflineManager"/>
+		</property>
+	</bean>
+	<bean id="streamUserManager" class="com.sihuatech.sqm.content.manager.StreamUserManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="streamUserOfflineManager" class="com.sihuatech.sqm.content.manager.StreamUserOfflineManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+</beans>
